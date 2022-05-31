@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<Alarms IPAddress="10.127.7.247" crc="b0f53de0" release="5.5.0-3">
+  <alarmLine id="1" index="1" status="Active" time="Mar  8 15:22:39" duration="0" type="ETH" stream="1313 - Trace Latina:Trace Latina" description="Freeze-frame detected (since Mar  8 15:20:34)" color="red"></alarmLine>
+  <alarmLine id="2" index="2" status="Active" time="Mar  8 15:22:39" duration="0" type="ETH" stream="1313 Trace Urban:Trace Urban" description="Freeze-frame detected (since Mar  8 15:20:34)" color="red"></alarmLine>
+  <alarmLine id="3" index="3" status="Active" time="Mar  8 15:22:39" duration="0" type="ETH" stream="1313 - Trace Caribbean:Trace Caribbean" description="Freeze-frame detected (since Mar  8 15:20:34)" color="red"></alarmLine>
+  <alarmLine id="4" index="4" status="Active" time="Mar  8 15:20:23" duration="0" type="ETH" stream="BIX - Trace Caribbean:Trace Caribbean" description="No data detected" color="red"></alarmLine>
+  <alarmLine id="5" index="5" status="Active" time="Mar  8 15:20:23" duration="0" type="ETH" stream="BIX - Trace Latina:Trace Latina" description="No data detected" color="red"></alarmLine>
+  <alarmLine id="6" index="6" status="Active" time="Mar  8 15:20:23" duration="0" type="ETH" stream="BIX-Trace Urban:Trace Urban" description="No data detected" color="red"></alarmLine>
+  <alarmLine id="7" index="7" status="Cleared" time="Mar  9 11:58:03" duration="2" type="ETH" stream="AVP-BNT - BNT1 HD:BNT1 HD" description="CC errors detected (Mar  9 11:58:01 - Mar  9 11:58:03)" color="green"></alarmLine>
+  <alarmLine id="8" index="8" status="Cleared" time="Mar  9 09:50:12" duration="16" type="ETH" stream="ENC6 Eurosport 4k:Eurosport 4K" description="Audio silence detected (Mar  9 09:49:56 - Mar  9 09:50:12)" color="green"></alarmLine>
+  <alarmLine id="9" index="9" status="Cleared" time="Mar  9 09:22:57" duration="2" type="ETH" stream="NBG - NOVA HD:NOVA HD" description="CC errors detected (Mar  9 09:22:55 - Mar  9 09:22:57)" color="green"></alarmLine>
+  <alarmLine id="10" index="10" status="Cleared" time="Mar  9 09:12:09" duration="2" type="ETH" stream="AVP-BNT - BNT1 HD:BNT1 HD" description="CC errors detected (Mar  9 09:12:07 - Mar  9 09:12:09)" color="green"></alarmLine>
+  <alarmLine id="11" index="11" status="Cleared" time="Mar  9 07:43:48" duration="2" type="ETH" stream="AVP-BNT - BNT1 HD:BNT1 HD" description="CC errors detected (Mar  9 07:43:46 - Mar  9 07:43:48)" color="green"></alarmLine>
+  <alarmLine id="12" index="12" status="Cleared" time="Mar  9 07:18:09" duration="2" type="ETH" stream="AVP-BNT - BNT1 HD:BNT1 HD" description="CC errors detected (Mar  9 07:18:07 - Mar  9 07:18:09)" color="green"></alarmLine>
+  <alarmLine id="13" index="13" status="Cleared" time="Mar  9 06:29:35" duration="208" type="ETH" stream="ENC38 - BulgariaOnAir:Bulgaria On Air HD" description="Freeze-frame detected (since Mar  9 06:24:01) (Mar  9 06:26:07 - Mar  9 06:29:35)" color="green"></alarmLine>
+  <alarmLine id="14" index="14" status="Cleared" time="Mar  9 06:24:05" duration="231" type="ETH" stream="ENC38 - BulgariaOnAir:Bulgaria On Air HD" description="Freeze-frame detected (since Mar  9 06:18:07) (Mar  9 06:20:14 - Mar  9 06:24:05)" color="green"></alarmLine>
+  <alarmLine id="15" index="15" status="Cleared" time="Mar  9 05:55:39" duration="2" type="ETH" stream="AVP-BNT - BNT1 HD:BNT1 HD" description="CC errors detected (Mar  9 05:55:37 - Mar  9 05:55:39)" color="green"></alarmLine>
+  <alarmLine id="16" index="16" status="Cleared" time="Mar  9 05:32:34" duration="2" type="ETH" stream="Eurosport 4k:Eurosport 4K Bulgaria" description="CC errors detected (Mar  9 05:32:32 - Mar  9 05:32:34)" color="green"></alarmLine>
+  <alarmLine id="17" index="17" status="Cleared" time="Mar  9 05:22:24" duration="7" type="ETH" stream="ENC38 - BBC Earth 1080p" description="No signal detected (Mar  9 05:22:17 - Mar  9 05:22:24)" color="green"></alarmLine>
+  <alarmLine id="18" index="18" status="Cleared" time="Mar  9 05:22:17" duration="5" type="ETH" stream="ENC38 - BBC Earth 1080p:BBC Earth HD" description="No data detected (Mar  9 05:22:12 - Mar  9 05:22:17)" color="green"></alarmLine>
+  <alarmLine id="19" index="19" status="Cleared" time="Mar  9 05:07:11" duration="19" type="ETH" stream="ENC6 Eurosport 4k:Eurosport 4K" description="Audio silence detected (Mar  9 05:06:52 - Mar  9 05:07:11)" color="green"></alarmLine>
+  <alarmLine id="20" index="20" status="Cleared" time="Mar  9 04:40:35" duration="6" type="ETH" stream="ENC6 Eurosport 4k:Eurosport 4K" description="Audio silence detected (Mar  9 04:40:29 - Mar  9 04:40:35)" color="green"></alarmLine>
+  <top time="Mar  9 13:14:20" status=""></top>
+</Alarms>

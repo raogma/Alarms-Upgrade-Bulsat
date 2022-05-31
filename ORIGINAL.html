@@ -1,0 +1,350 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="bg">
+<head>
+<title>DTH Alarms</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="PRAGMA" content="no-cache">
+<meta http-equiv="CACHE-CONTROL" content="no-cache,no-store,must-revalidate,max-age=0">
+<meta name="author" content="DTH Bulsatcom" />
+<meta name="generator" content="DTH Bulsatcom" />
+<meta name="title" content="Monit DTH Bulsatcom" />
+<meta name="description" content="Monit DTH Bulsatcom" />
+<link rel="shortcut icon" href="img/favicon.ico" />
+<meta http-equiv="refresh" content="3600">
+
+<style type="text/css">
+body          { font-family: "Helvetica Neue", Helvetica, Arial; font-size: 12px; line-height: 14px; color: #3b3b3b; margin: 10px 10px 10px 10px; background: url(img/bg.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+.wrapper      { margin: 0px auto; padding: 0px; }
+.logo         { position: fixed; bottom: 2%; right: 1%; }
+.clock        { color: #FFA100; font-size: 38px; position: fixed; bottom: 3%; left: 1%; }
+.clockg       { color: #bab9b8; font-size: 38px; position: fixed; bottom: 3%; left: 1%; }
+.misc         { color: #FFA100; font-size: 38px; position: fixed; bottom: 3%; left: 42%; right: 42%; }
+.temp1        { color: #4bff19; font-size: 38px; position: fixed; bottom: 3%; left: 30%; }
+.temp2        { color: #4bff19; font-size: 38px; position: fixed; bottom: 3%; right: 32%; }
+.error        { color: #ff2e00; }
+.table        { margin: 0px 0px 2px 0px; width: 100%; display: table; border-collapse: separate; white-space: nowrap; border-top: 1px solid #000000; border-right: 1px solid #000000; }
+.row          { display: table-row; background: #f6f6f6; }
+.row.ht       { #background: #afeeee; background: #ffc228; font-weight: bold; font-size: 210%; line-height: 24px; } 
+.row.ht2      { background: #f6f6f6; font-weight: bold; font-size: 210%; line-height: 24px; }
+.row.mht      { background: #f4f4f4; font-weight: bold; }
+.row.critical { color: #ffffff; background: #ea6153; }
+.row.warning  { color: #000000; background: #FFFF00; }
+.row.major    { color: #000000; background: #ffe7c1; }
+.row.minor    { color: #000000; background: #00eeff; }
+.row.unknown  { background: #ffddaa; color: #000000; }
+.row.ok       { background: #33FF33; color: #000000; }
+.row.red      { color: #ffffff; background: #ea6153; }
+.row.orange   { color: #000000; background: #ffe7c1; }
+.row.green    { background: #f2ffef; color: #000000; }
+.row.grey     { background: #C0C0C0; color: #ffffff; }
+.row.cian     { background: #00eeff; color: #000000; }
+.row.backup   { background: #e8ebc0; color: #000000; }
+.cell         { padding: 1px 2px; display: table-cell; border-bottom: 1px solid #000000; border-left: 1px solid #000000; }
+.cell.w       { width: 100%; }
+.cell.bl0     { border-left: 0px; }
+.cell.date    { width: 7%; }
+.cell.bold    { font-weight: bold; }
+.cell.ok      { background: #e2ffd9; }
+.cell.err     { background: #ed9cff; }
+.cell.hr      { padding: 1px 2px; display: table-cell; border-bottom: 1px solid #000000; border-left: 1px solid #000000; font-size: 60%; }
+.nosplit      { width: 100%;  height: 100%; float: left;  overflow: hidden; }
+.split_l      { width: 49.8%; height: 100%; float: left;  overflow: hidden; }
+.split_r      { width: 49.8%; height: 100%; float: right; overflow: hidden; }
+</style>
+</head>
+
+<body>
+<div class="wrapper nosplit">
+<div class="table" id="s3"></div>
+<div class="table" id="s5"></div>
+<div class="table" id="dthalarms"></div>
+<div class="table" id="s6"></div>
+<div class="table" id="s7"></div>
+<div class="table" id="s2"></div>
+<div class="table" id="s1"></div>
+<div class="table" id="s4"></div>
+<div class="table" id="avp"></div>
+<div class="table" id="enc"></div>
+</div>
+<div class="clockg" id="clock"></div>
+<div class="logo"><img src="img/logo.png" width="200px"/></div>
+
+<script>
+function showClock() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
+    var t = setTimeout(showClock, 500);
+};
+
+function checkTime(i) { if ( i < 10 ) { i = "0" + i }; return i; };
+function formatTime(Timestamp) {
+    var dt = new Date(Timestamp);
+    var month = dt.getMonth() + 1;
+    var day = dt.getDate();
+    var hours = dt.getHours();
+    var minutes = dt.getMinutes();
+    var seconds = dt.getSeconds();
+    if ( month < 10 ) { month = '0' + month; };
+    if ( day < 10 ) { day = '0' + day; };
+    if ( hours < 10 ) { hours = '0' + hours; };
+    if ( minutes < 10 ) { minutes = '0' + minutes; };
+    if ( seconds < 10 ) { seconds = '0' + seconds; };
+    return month + "." + day + " " + hours + ":" + minutes + ":" + seconds;
+};
+
+function isEmpty(obj) {
+for(var key in obj) {
+    if(obj.hasOwnProperty(key))
+        return false;
+};
+return true;
+};
+
+function loadDTHJSON(url,dest,DESC) {
+    var shttp = new XMLHttpRequest();
+    shttp.onreadystatechange = function() {
+        if (this.readyState === XMLHttpRequest.DONE){
+            if (this.readyState == 4 && this.status == 200) {
+                myObj = JSON.parse(this.responseText);
+                writeTableDTHAlarms(myObj,dest,DESC);
+            }
+            else {
+                var tbl = document.getElementById(dest);
+                tbl.innerHTML  = "ERROR";
+            };
+        };
+    };
+    shttp.open("GET", url, true);
+    shttp.send();
+};
+
+function writeTableDTHAlarms(resource,dest,DESC){
+var text = "";
+var tbl = document.getElementById(dest);
+var resultArray = resource;
+var curDate = Date.now();
+
+//	console.log (resultArray);
+if( ! isEmpty(resultArray)) {
+    text += "<div class = \"row green\">";
+    text += "<div class= \"cell bold err\" style=\"width: 30px;\"></div>";
+    text += "<div class= \"cell bold err bl0 date\">";
+    text += DESC;
+    text += "</div>";
+    text += "<div class = \"cell date\">" + formatTime(curDate) + "</div>";
+    text += "<div class= \"cell bl0\"></div>";
+    text += "<div class= \"cell bl0\"></div>";
+    text += "<div class= \"cell bl0\"></div>";
+    text += "</div>";
+    text += "<div class=\"row mht\"><div class=\"cell\">ID</div><div class=\"cell\">Date</div><div class=\"cell\">Server</div><div class=\"cell\">Service</div><div class=\"cell\">Label</div><div class=\"cell\">Info</div></div>";
+    for (var host in resultArray) {
+        text += "<div class=\"row ";
+        text += resultArray[host].severity;
+        text += "\">";
+        text += "<div class= \"cell\">";
+        text += host;
+        text += "</div>";
+        text += "<div class= \"cell date\">";
+        text += formatTime(resultArray[host].date);
+        text += "</div>";
+        text += "<div class= \"cell\">";
+        text += resultArray[host].serverId;
+        text += "</div>";
+        text += "<div class= \"cell\">";
+        text += resultArray[host].serviceName;
+        text += "</div>";
+        text += "<div class= \"cell\">";
+        text += resultArray[host].label;
+        text += "</div>";
+        text += "<div class= \"cell\">";
+        text += resultArray[host].additionalInfo;
+        text += "</div>";
+        text += "</div>";
+    };
+    tbl.innerHTML  = text;
+} else {
+    text += "<div class = \"row green\">";
+    text += "<div class= \"cell bold ok\" style=\"width: 30px;\"></div>";
+    text += "<div class= \"cell bold ok bl0 date\">";
+    text += DESC;
+    text += "</div>";
+    text += "<div class = \"cell date\">" + formatTime(curDate) + "</div>";
+    text += "<div class= \"cell bl0\"></div>";
+    text += "</div>";
+    tbl.innerHTML  = text;
+}
+};
+
+function loadENCJSON(url,dest,DESC) {
+var shttp = new XMLHttpRequest();
+shttp.onreadystatechange = function() {
+    if (this.readyState === XMLHttpRequest.DONE){
+        if (this.readyState == 4 && this.status == 200) {
+            myObj = JSON.parse(this.responseText);
+            writeTableENCsources(myObj,dest,DESC);
+        }
+        else {
+            var tbl = document.getElementById(dest);
+            tbl.innerHTML  = "ERROR";
+        };
+    };
+};
+shttp.open("GET", url, true);
+shttp.send();
+};
+
+function writeTableENCsources(resource,dest,DESC){
+var text = "";
+var tbl = document.getElementById(dest);
+var resultArray = resource;
+var curDate = Date.now();
+
+//	console.log (resultArray);
+if( ! isEmpty(resultArray)) {
+    text += "<div class = \"row green\">";
+    text += "<div class= \"cell bold err\" style=\"width: 30px;\"></div>";
+    text += "<div class= \"cell bold err bl0 date\">";
+    text += DESC;
+    text += "</div>";
+    text += "<div class = \"cell date\">" + formatTime(curDate) + "</div>";
+    text += "<div class= \"cell bl0\"></div>";
+    text += "<div class= \"cell bl0\"></div>";
+    text += "</div>";
+    text += "<div class=\"row mht\"><div class=\"cell\">ID</div><div class=\"cell\">CHAN</div><div class=\"cell\">ENC</div><div class=\"cell\">Main source</div><div class=\"cell\">Backup source</div></div>";
+    for (var id in resultArray) {
+        text += "<div class=\"row backup\">";
+        text += "<div class= \"cell\">";
+        text += id;
+        text += "</div>";
+        text += "<div class= \"cell\">";
+        text += resultArray[id].serviceName;
+        text += "</div>";
+        text += "<div class= \"cell\">";
+        text += resultArray[id].serverID;
+        text += "</div>";
+        text += "<div class= \"cell bold\">";
+        text += resultArray[id].source0;
+        text += "</div>";
+        text += "<div class= \"cell bold\">";
+        text += resultArray[id].source1;
+        text += "</div>";
+        text += "</div>";
+    };
+    tbl.innerHTML  = text;
+} else {
+    text += "<div class = \"row green\">";
+    text += "<div class= \"cell bold ok\" style=\"width: 30px;\"></div>";
+    text += "<div class= \"cell bold ok bl0 date\">";
+    text += DESC;
+    text += "</div>";
+    text += "<div class = \"cell date\">" + formatTime(curDate) + "</div>";
+    text += "<div class= \"cell bl0\"></div>";
+    text += "</div>";
+    tbl.innerHTML  = text;
+}
+};
+
+function loadXML(url,dest,DESC) {
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4) {
+        if (this.status == 200) {
+            writeTableXML(this,dest,DESC);
+        }
+    else {
+        var tbl = document.getElementById(dest);
+        tbl.innerHTML  = "ERROR";
+    }
+}
+};
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+}
+
+function writeTableXML(xml,dest,DESC) {
+var x, i, xmlDoc, txt;
+var tbl = document.getElementById(dest);
+xmlDoc = xml.responseXML;
+var curDate = Date.now();
+
+x = xmlDoc.getElementsByTagName("alarmLine");
+
+var err="no";
+for (i = 0; i< x.length; i++) {
+    if (x[i].getAttribute("status") && (x[i].getAttribute("type") !== "SYS")) {
+        if (x[i].getAttribute("status") == "Cleared") {continue;}
+        if (x[i].getAttribute("status") == "Event") {continue;}
+        err="yes";
+        break;
+    }
+}
+
+if (err == "yes") {
+    txt = "<div class = \"row green\">";
+    txt += "<div class= \"cell bold err\" style=\"width: 30px;\"></div>";
+    txt += "<div class= \"cell bold err bl0 date\">";
+    txt += DESC;
+    txt += "</div>";
+    txt += "<div class = \"cell date\">" + formatTime(curDate) + "</div>";
+    txt += "<div class= \"cell bl0\"></div>";
+    txt += "</div>";
+    txt += "<div class=\"row mht\"><div class=\"cell\">ID</div><div class=\"cell\">DATE</div><div class=\"cell\">CHAN</div><div class=\"cell\">DESC</div></div>";
+
+    for (i = 0; i< x.length; i++) { 
+        if (x[i].getAttribute("status") && (x[i].getAttribute("type") !== "SYS")) {
+            if (x[i].getAttribute("status") == "Cleared") {continue;}
+            if (x[i].getAttribute("status") == "Event") {continue;}
+            txt += "<div class=\"row ";
+            txt += x[i].getAttribute("color");
+            txt += "\"><div class=\"cell\">";
+            txt += (x[i].getAttribute("id"));
+            txt += "</div><div class=\"cell date\">";;
+            txt += (x[i].getAttribute("time"));
+            txt += "</div><div class=\"cell\" style=\"width: 20%;\">";;
+            txt += (x[i].getAttribute("stream"));
+            txt += "</div><div class=\"cell\">";;
+//				txt += (x[i].getAttribute("description").substring(0,60)) + "...";
+            txt += x[i].getAttribute("description");
+            txt += "</div></div>";
+        }
+    }
+    tbl.innerHTML  = txt;
+} else {
+    txt = "<div class = \"row green\">";
+    txt += "<div class= \"cell bold ok\" style=\"width: 30px;\"></div>";
+    txt += "<div class= \"cell bold ok bl0 date\">";
+    txt += DESC;
+    txt += "</div>";
+    txt += "<div class = \"cell date\">" + formatTime(curDate) + "</div>";
+    txt += "<div class= \"cell bl0\"></div>";
+    txt += "</div>";
+    tbl.innerHTML  = txt;
+}
+}
+
+loadDTHJSON("/alarms/mk","dthalarms","DTH MK"); setInterval(function(){loadDTHJSON("/alarms/mk","dthalarms","DTH MK")}, 10000);
+
+loadXML("/s3/status","s3","Sources"); setInterval(function(){loadXML("/s3/status","s3","Sources")}, 15000);
+loadXML("/s5/status","s5","SAT Receivers"); setInterval(function(){loadXML("/s5/status","s5","SAT Receivers")}, 15000);
+loadXML("/s6/status","s6","MK ENC201"); setInterval(function(){loadXML("/s6/status","s6","MK ENC201")}, 15000);
+loadXML("/s7/status","s7","MK ENC202"); setInterval(function(){loadXML("/s7/status","s7","MK ENC202")}, 15000);
+loadXML("/s1/status","s1","BT-CM"); setInterval(function(){loadXML("/s1/status","s1","BT-CM")}, 15000);
+loadXML("/s2/status","s2","BT-MK"); setInterval(function(){loadXML("/s2/status","s2","BT-MK")}, 15000);
+loadXML("/s4/status","s4","BT-SAT"); setInterval(function(){loadXML("/s4/status","s4","BT-SAT")}, 15000);
+
+loadDTHJSON("/avp_status","avp","DTH AVP-ENC"); setInterval(function(){loadDTHJSON("/avp_status","avp","DTH AVP-ENC")}, 10000);
+loadENCJSON("/enc_source_status","enc","MK-Backup");
+setInterval(function(){loadENCJSON("enc_source_status","enc","MK-Backup")}, 30000);
+
+showClock();
+
+</script>
+</body>
+</html>
