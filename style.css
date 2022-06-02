@@ -1,22 +1,86 @@
-.critical { color: #ffffff; background: #ea6153; }
-.warning { color: #000000; background: #FFFF00; }
-.major { color: #000000; background: #ffe7c1; }
-.minor { color: #000000; background: #00eeff; }
-.logo { position: fixed; bottom: 2%; right: 1%; }
-.clock { color: #FFA100; font-size: 38px; position: fixed; bottom: 3%; left: 1%; }
-.clockg { color: #bab9b8; font-size: 38px; position: fixed; bottom: 3%; left: 1%; }
-.MediumAquaMarine {background: #66CDAA;}
-.Olive {background: #808000;}
-.Crimson {background:#DC143C;}
-.LightGreen {background: #7FFF00;}
-.LightGrey {background: #D3D3D3;}
-.LightPink {background: #FF00FF;}
-.DullPink {background: #BA55D3;}
+.critical {
+    color: #ffffff;
+    background: #ea6153;
+}
+
+.warning {
+    color: #000000;
+    background: #FFFF00;
+}
+
+.major {
+    color: #000000;
+    background: #ffe7c1;
+}
+
+.minor {
+    color: #000000;
+    background: #00eeff;
+}
+
+.logo {
+    position: fixed;
+    bottom: 2%;
+    right: 1%;
+}
+
+.clock {
+    color: #FFA100;
+    font-size: 38px;
+    position: fixed;
+    bottom: 3%;
+    left: 1%;
+}
+
+.clockg {
+    color: #bab9b8;
+    font-size: 38px;
+    position: fixed;
+    bottom: 3%;
+    left: 1%;
+}
+
+.MediumAquaMarine {
+    background: #66CDAA;
+}
+
+.Olive {
+    background: #808000;
+}
+
+.Crimson {
+    background: #DC143C;
+}
+
+.LightGreen {
+    background: #7FFF00;
+}
+
+.LightGrey {
+    background: #D3D3D3;
+}
+
+.LightPink {
+    background: #FF00FF;
+}
+
+.DullPink {
+    background: #BA55D3;
+}
 
 body {
     color: white;
-}
-
+    font-family: "Helvetica Neue", Helvetica, Arial;
+    font-size: 12px;
+    line-height: 14px;
+    color: white;
+    margin: 10px 10px 10px 10px;
+    background: url(v2/ac.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}    
 
 .date {
     width: 10px !important;
